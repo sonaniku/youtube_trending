@@ -23,7 +23,7 @@ class HomeConfig(AppConfig):
                 get_trending_videos()
                 flag = True
             except Exception as e: 
-                print(f"Exception: {e.with_traceback}")
+                print(f"Exception: {e}")
             if flag == True: 
                 LatestUpdated.objects.create(latest_updated_date = date.today())
         else:

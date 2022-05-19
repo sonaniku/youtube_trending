@@ -87,7 +87,7 @@ def TransformPublishDate_hour_in_day(published_at):
 def TransformDuration(duration_list):
     r = []
     for i in duration_list:
-        r.append(isodate.parse_duration(i))
+        r.append(isodate.parse_duration(i).seconds)
     return r
     pass
 
@@ -173,10 +173,13 @@ def get_trending_videos():
         
         ##### insert to database
         df_videos.to_sql('trending_videos', con=conn, if_exists='append', index=False)
-        conn = psycopg2.connect(conn_string
-                        )
-        conn.autocommit = True
-    
+        
+        # try:
+        #     conn = psycopg2.connect(conn_string)
+        #     conn.autocommit = True
+        # except Exception as e:
+        #     print("failed")
+        #     print(e)
     conn.close()
 
 
