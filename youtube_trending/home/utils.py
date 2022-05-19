@@ -23,8 +23,7 @@ def save_to_csv(data: pd.DataFrame, filename: str = "trending.csv"):
         os.makedirs(filename.split("/")[-2])
 
     if not os.path.exists(filename):
-        data.to_csv(filename, index=False)
+        data.to_csv(filename, index=False, encoding="utf-8")
         return
-
-    data.to_csv(filename, index=False, header=False, mode="a")
+    data.to_csv(filename, index=False, header=False, mode="a", encoding="utf-8")
     return
