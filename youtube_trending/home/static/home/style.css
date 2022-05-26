@@ -1,0 +1,213 @@
+    html,
+    body,
+    div,
+    span,
+    applet,
+    object,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    blockquote,
+    pre,
+    a,
+    abbr,
+    acronym,
+    address,
+    big,
+    cite,
+    code,
+    del,
+    dfn,
+    em,
+    font,
+    img,
+    ins,
+    kbd,
+    q,
+    s,
+    samp,
+    small,
+    strike,
+    strong,
+    sub,
+    sup,
+    tt,
+    var,
+    b,
+    u,
+    i,
+    center,
+    dl,
+    dt,
+    dd,
+    ol,
+    ul,
+    li,
+    fieldset,
+    form,
+    label,
+    legend,
+    table,
+    caption,
+    tbody,
+    tfoot,
+    thead,
+    tr,
+    th,
+    td {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        font-size: 100%;
+        vertical-align: baseline;
+        background: transparent;
+    }
+    
+    body {
+        line-height: 1;
+        color: #555;
+    }
+    
+    ol,
+    ul {
+        list-style: none;
+    }
+    
+    blockquote,
+    q {
+        quotes: none;
+    }
+    
+    blockquote:before,
+    blockquote:after,
+    q:before,
+    q:after {
+        content: '';
+        content: none;
+    }
+    
+     :focus {
+        outline: 0;
+    }
+    
+    ins {
+        text-decoration: none;
+    }
+    
+    del {
+        text-decoration: line-through;
+    }
+    
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    
+    .clearfix:after {
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
+    }
+    
+    .clearfix {
+        clear: both;
+        display: block;
+    }
+    
+    html[xmlns] .clearfix {
+        display: block;
+    }
+    
+    * html .clearfix {
+        height: 1%;
+    }
+    
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    /*Add your css into here*/
+    
+    .fl_left {
+        float: left;
+    }
+    
+    .fl_right {
+        float: right;
+    }
+    
+    h1 {
+        color: black;
+        text-align: center;
+    }
+    
+    body {
+        padding: 16px;
+    }
+    
+    nav {
+        position: relative;
+    }
+    
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .tab-button {
+        display: flex;
+        align-self: flex-start;
+        justify-content: space-around;
+        width: 200px;
+    }
+    
+    .page-link {
+        display: flex;
+        align-self: flex-end;
+        justify-content: space-around;
+        width: 300px;
+    }
+    
+    li.btn_ {
+        align-self: flex-start;
+    }
+    
+    li.item {
+        align-self: flex-start;
+    }
+    
+    iframe {
+        border: 1px solid black;
+        outline: 1px solid black;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-radius: 5px;
+        height: 650px;
+        position: relative;
+        top: 16px;
+    }
+    
+    iframe#dashboard2 {
+        display: none;
+        visibility: visible;
+    }
+    
+    iframe#dashboard1 {
+        display: block;
+    }

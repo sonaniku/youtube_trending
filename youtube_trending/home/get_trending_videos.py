@@ -100,7 +100,7 @@ def get_trending_videos():
         ('KR', 'South Korea'),
         ('RU', 'Russia'),
         ('UA', 'Ukraine'),
-        ('JP', 'Japan'),
+        ('AU', 'Australia'),
         ('US', 'United States'),
         ('HK', 'Hong Kong'),
     ]
@@ -113,7 +113,10 @@ def get_trending_videos():
         url=config.URL,
         api_key=config.API_KEY
     )
-    os.mkdir(Path(__file__).parent / f"archive/{dataset_version}")
+    parent_path = Path(__file__).parent
+    print(f"path:{parent_path }")
+    # os.mkdir(Path(__file__).parent / f"archive/{dataset_version}")
+    os.mkdir(parent_path / f"archive/{dataset_version}")
 
     print(f"{youtube.url = } - {youtube.api_key = }")
 
@@ -156,24 +159,45 @@ def get_trending_videos():
         df_videos["dislike"] = 0
         df_videos["duration"] = TransformDuration(df_videos["duration"])
         ##### save archive
-        filename_archive = Path(
-            __file__).parent / f"archive/{dataset_version}/{region[0]}_trending_{dataset_version}.csv"
+        # filename_archive = Path(__file__).parent / f"archive/{dataset_version}/{region[0]}_trending_{dataset_version}.csv"
+        filename_archive = parent_path / f"archive/{dataset_version}/{region[0]}_trending_{dataset_version}.csv"
+        
+        
         print(f"{filename_archive = }")
-        save_to_csv(df_videos, filename_archive.as_posix())
+        # print(f"null count: {df_videos.isna().sum(axis=0)}")
+        # df_videos.fillna('-')
+        # print(f"null count: {df_videos.isna().sum(axis=0)}")
+        
+        try:
+            save_to_csv(df_videos, filename_archive.as_posix())
+            print("save to csv ARCHIVE success")
+        
+        except Exception as ex:
+            print(f"save to csv ARCHIVE error: {ex}")
         df_saved = pd.read_csv(filename_archive)
         _LOGGER.info("Done saving %d trending videos (%s). Total videos: %d",
                      df_videos.shape[0], filename_archive, df_saved.shape[0])
 
         ##### save data
-        filename_data = Path(__file__).parent / f"data/trendings.csv"
-        save_to_csv(df_videos, filename_data.as_posix())
+        # filename_data = Path(__file__).parent / f"data/trendings.csv"
+        filename_data = parent_path / f"data/trendings.csv"
+        
+        try:
+            save_to_csv(df_videos, filename_data.as_posix())
+            print("save to csv DATA success")
+        except Exception as ex:
+            print(f"save to csv DATA error: {ex}")
         df_saved_data = pd.read_csv(filename_data)
         _LOGGER.info("Done saving %d trending videos to data folder (%s). Total videos: %d",
                      df_videos.shape[0], filename_data, df_saved_data.shape[0])
         
         ##### insert to database
-        df_videos.to_sql('trending_videos', con=conn, if_exists='append', index=False)
-        
+        try:
+            df_videos.to_sql('trending_videos', con=conn, if_exists='append', index=False, )
+            print(f"df_videos to sql success")
+            
+        except Exception as ex:
+            print(f"df_videos to sql failed: {ex}")
         # try:
         #     conn = psycopg2.connect(conn_string)
         #     conn.autocommit = True

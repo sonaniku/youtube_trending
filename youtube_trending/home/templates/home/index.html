@@ -1,0 +1,53 @@
+{% extends 'home/header.html' %} {% block content %}
+<h1>HOME</h1>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <div class="tab-button">
+        <li class="btn">
+          <button id="data_btn" onclick="document.getElementById('dashboard1').visibility=True">Data</button>
+        </li>
+        <li class="btn">
+          <button id="dashboard_btn">Dashboard</button>
+        </li>
+      </div>
+      
+      <div class="page-link">
+        {% if user.is_authenticated %}
+
+      <li class="item">
+        <a class="nav-link" href="/logout/logout">Logout</a>
+      </li>
+      <li class="item">
+        <a class="nav-link" href="#">Welcome, {{user.username}}</a>
+      </li>
+
+      {% else %}
+
+      <li class="nav-item">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      </div>
+
+      {% endif %}
+    </ul>
+  </div>
+</nav>
+<div class="tab"></div>
+  <iframe id="dashboard1"
+src="http://54.237.177.113:8088/superset/dashboard/p/zelXyWyPdmg/?standalone=true"
+  
+></iframe>
+<iframe id="dashboard2"
+src="http://54.237.177.113:8088/superset/dashboard/p/YEkDmxwPew0/?standalone=true"
+  
+></iframe>  
+{% comment %} <iframe id="dashboard1"
+  
+></iframe>
+<iframe id="dashboard2"
+  
+></iframe>  {% endcomment %}
+
+{% endblock %}
